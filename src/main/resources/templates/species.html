@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h2>Liste des espèces</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Latin</th>
+            <th>Action</th>
+        </tr>
+<!--        pour boucler en java-->
+        <tr th:each="specie: ${species}">
+            <td th:text="${specie.getId()}"></td>
+            <td th:text="${specie.getCommonName()}"></td>
+            <td th:text="${specie.getLatinName()}"></td>
+            <td>
+                <div class="group">
+                    <a th:href="@{/species/delete/(id=${specie.getId()})}">Supprimer</a>
+                    <a th:href="@{/species/edit/(id=${specie.getId()})}">Editer</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+</section>
+<section>
+    <h2>Ajouter une espèce</h2>
+    <form th:object="${specie}" th:action="@{/species}" method="post">
+        <div class="group">
+            <label>Nom de l'espèce</label>
+            <input type="text" th:field="*{commonName}">
+        </div>
+        <div class="group">
+            <label>Nom latin</label>
+            <input type="text" th:field="*{latinName}">
+        </div>
+        <button type="submit">Créer</button>
+    </form>
+</section>
+</body>
+</html>
+

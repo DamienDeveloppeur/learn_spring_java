@@ -13,7 +13,7 @@ public class Specie {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
 	@GenericGenerator(name = "native", strategy = "native")
-	private Long id;
+	private Long id = 0L;
 	
 	@Column(name = "common_name")
 	private String commonName;

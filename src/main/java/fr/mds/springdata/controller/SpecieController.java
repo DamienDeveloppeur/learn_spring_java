@@ -33,8 +33,37 @@ public class SpecieController {
     @Transactional
     @PostMapping
     public String create(@ModelAttribute Specie specie) {
-        if(specie.getId() == 0L)
+        if(specie.getId() == 0L) specieService.create(specie);
+        else specieService.update(specie);
+
+        return "redirect:/species";
+    }
+
+    @Transactional
+    @GetMapping("/delete")
+    public String delete(@RequestParam(name = "id") long id) {
+        Specie specie = specieService.get(id);
+        if(specie != null) specieService.delete(id);
+        return "redirect:/species";
+    }
+    @Transactional
+    @GetMapping("/updateRedirect")
+    public String updateRedirect(@RequestParam(name = "id") long id, Model model){
+        Specie specie = specieService.get(id);
+        if(specie == null) return "redirect:/species";
+        model.addAttribute("specie",specie);
+        return "update_specie";
+    }
+
+    @Transactional
+    @PostMapping("/edit")
+    public String edit(Specie specie) {
+        System.out.print("id : "+ specie.getId());
+        if(specie.getId() != null)
+            specieService.update(specie);
+        else{
             specieService.create(specie);
+        }
         return "redirect:/species";
     }
 }

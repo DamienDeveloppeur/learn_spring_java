@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <h2>Editer une espèce</h2>
+    <form th:object="${specie}" th:action="@{/species/edit}" th:method="post">
+        <div class="group">
+            <label>Nom de l'espéce</label>
+            <input type="text" th:field="*{commonName}">
+        </div>
+        <div class="group">
+            <label>Nom latin</label>
+            <input type="text" th:field="*{latinName}">
+        </div>
+        <button type="submit">Modifier</button>
+        <a href="/species">Retour</a>
+    </form>
+</section>
+</body>
+</html>

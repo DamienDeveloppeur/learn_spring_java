@@ -21,8 +21,8 @@
             <td th:text="${specie.getLatinName()}"></td>
             <td>
                 <div class="group">
-                    <a th:href="@{/species/delete/(id=${specie.getId()})}">Supprimer</a>
-                    <a th:href="@{/species/edit/(id=${specie.getId()})}">Editer</a>
+                    <a th:href="@{/species/delete/(id=${specie.getId()})}">Delete</a>
+                    <a th:href="@{/species/updateRedirect/(id=${specie.getId()})}">Modif maggle</a>
                 </div>
             </td>
         </tr>
